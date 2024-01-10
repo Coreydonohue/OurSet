@@ -1,21 +1,21 @@
 import React from 'react';
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, View, Pressable } from 'react-native';
 
 const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <TouchableOpacity>
+      <Pressable>
          <Text style={styles.text}>Join Group</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
+      </Pressable>
+      <Pressable>
          <Text style={styles.text}>Create Group</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
+      </Pressable>
+      <Pressable>
          <Text style={styles.text}>Login</Text>
-      </TouchableOpacity>
-      <TouchableOpacity>
+      </Pressable>
+      <Pressable>
          <Text style={styles.text}>Register</Text>
-      </TouchableOpacity>
+      </Pressable>
     </View>
   );
 };
