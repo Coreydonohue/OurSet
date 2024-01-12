@@ -9,13 +9,15 @@ const HomeScreen = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const [register] = useAddUserMutation();
+  // console.log('register ', register)
 
   const handleRegister = async () => {
     try {
-      await register({
+      const response = await register({
         email: email,
         password: password,
       });
+      console.log('response from register', response.data);
     } catch (err) {
       console.log("error during registration", err);
     }
@@ -34,20 +36,15 @@ const HomeScreen = () => {
       </Pressable>
 
       <TextInput
-        labelValue={email}
-        onChange={(userEmail) => setEmail(userEmail)}
+        value={email}
+        onChangeText={(userEmail) => setEmail(userEmail)}
         placeholder="Email"
-        iconType="user"
-        inputMode="email-address"
-        autoCapitalize="none"
-        autoCorrect={false}
       />
       <TextInput
-        labelValue={password}
-        onChange={(userPassword) => setPassword(userPassword)}
+        value={password}
+        onChangeText={(userPassword) => setPassword(userPassword)}
         placeholder="Password"
-        iconType="lock"
-        secureTextEntry={true}
+        // secureTextEntry={true}
       />
       {/* <TextInput
         labelValue={confirmPassword}

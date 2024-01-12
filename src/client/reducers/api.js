@@ -7,43 +7,21 @@ export const setApi = createApi({
   reducerPath: "setApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3000/",
-    // prepareHeaders: async (headers) => {
-    //   await new Promise((resolve) => {
-    //     const unsubscribe = onAuthStateChanged(auth, () => {
-    //       resolve();
-    //       unsubscribe();
-    //     });
-    //   });
-    //   const user = auth.currentUser;
-
-    //   if (user) {
-    //     const token = await user.getIdToken();
-    //     headers.set("Authorization", `Bearer ${token}`);
-    //   }
-
-    //   return headers;
-    // },
     prepareHeaders: async (headers) => {
-      try {
-        await new Promise((resolve) => {
-          const unsubscribe = onAuthStateChanged(auth, () => {
-            resolve();
-            unsubscribe();
-          });
+      await new Promise((resolve) => {
+        const unsubscribe = onAuthStateChanged(auth, () => {
+          resolve();
+          unsubscribe();
         });
-    
-        const user = auth.currentUser;
-    
-        if (user) {
-          const token = await user.getIdToken();
-          headers.set("Authorization", `Bearer ${token}`);
-        }
-    
-        return headers;
-      } catch (error) {
-        console.error("Error in prepareHeaders:", error);
-        return headers;
+      });
+      const user = auth.currentUser;
+
+      if (user) {
+        const token = await user.getIdToken();
+        headers.set("Authorization", `Bearer ${token}`);
       }
+
+      return headers;
     },
   }),
   endpoints: (builder) => ({
