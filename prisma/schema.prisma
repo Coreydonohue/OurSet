@@ -12,7 +12,7 @@ datasource db {
 
 model User {
   id          Int     @id @default(autoincrement())
-  username    String  @unique //change to email
+  email       String? @unique
   password    String
   firebaseUid String? @unique
   Role        Role[]
