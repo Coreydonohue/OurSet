@@ -11,8 +11,6 @@ const bcrypt = require("bcrypt");
 
 router.post("/register", async (req, res, next) => {
   const { email, password } = req.body;
-
- 
   try {
 
      // create firebase user
@@ -37,7 +35,7 @@ router.post("/register", async (req, res, next) => {
       },
     });
     res.send(newUser);
-    console.log("User created:", newUser);
+    console.log("User created:", newUser);∏
   } catch (error) {
     console.log("error during registration", error);
     res.status(500).json({ error: "Internal server error" });
@@ -45,3 +43,4 @@ router.post("/register", async (req, res, next) => {
 });
 
 module.exports = router;
+∏
