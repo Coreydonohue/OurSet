@@ -7,6 +7,7 @@ const HomeScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [groupCode, setGroupCode] = useState("");
 
   const [register] = useAddUserMutation();
   // console.log('register ', register)
@@ -17,7 +18,7 @@ const HomeScreen = () => {
         email: email,
         password: password,
       });
-      console.log('response from register', response.data);
+      console.log("response from register", response.data);
     } catch (err) {
       console.log("error during registration", err);
     }
@@ -25,13 +26,25 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Pressable>
-        <Text style={styles.text}>Join Group</Text>
-      </Pressable>
-      <Pressable>
+      {/* join group  */}
+      <View style={styles.joinGroup}>
+        <TextInput
+          value={groupCode}
+          onChangeText={(code) => setGroupCode(code)}
+          placeholder="Group Code"
+          style={styles.input}
+          // secureTextEntry={true}
+        />
+        <Pressable style={styles.btn}>
+          <Text style={styles.text}>Join Group</Text>
+        </Pressable>
+      </View>
+      {/* join group  */}
+
+      <Pressable style={styles.btn}>
         <Text style={styles.text}>Create Group</Text>
       </Pressable>
-      <Pressable>
+      <Pressable style={styles.btn}>
         <Text style={styles.text}>Login</Text>
       </Pressable>
 
@@ -39,11 +52,13 @@ const HomeScreen = () => {
         value={email}
         onChangeText={(userEmail) => setEmail(userEmail)}
         placeholder="Email"
+        style={styles.input}
       />
       <TextInput
         value={password}
         onChangeText={(userPassword) => setPassword(userPassword)}
         placeholder="Password"
+        style={styles.input}
         // secureTextEntry={true}
       />
       {/* <TextInput
@@ -61,7 +76,10 @@ const HomeScreen = () => {
 };
 
 const styles = StyleSheet.create({
-  container: {},
+  joinGroup: {
+    display: "flex",
+    flexDirection: "row",
+  },
   btn: {
     backgroundColor: "#3498db",
     padding: 10,
@@ -72,6 +90,16 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontSize: 16,
     fontWeight: "bold",
+  },
+  input: {
+    height: 40,
+    borderColor: "gray",
+    borderWidth: 1,
+    paddingLeft: 10,
+    paddingRight: 10,
+    borderRadius: 8,
+    fontSize: 16,
+    color: "#333",
   },
 });
 
